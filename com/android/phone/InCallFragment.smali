@@ -8014,6 +8014,43 @@
 
     if-nez v2, :cond_5b
 
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordStart()V
+
+    goto :goto_147
+
+    .line 2375
+    :cond_5b
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordStop()V
+
+    :goto_147
+    return-void
+.end method
+
+.method private voiceRecordStop()V
+    .registers 6
+
+    .prologue
+    .line 2375
+    const-string v2, "InCallFragment"
+
+    const-string v3, "voiceRecordClick()->stop recording"
+
+    invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 2377
+    iget-object v2, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
+
+    const/16 v3, 0xa
+
+    invoke-virtual {v2, v3}, Landroid/media/voicerecorder/BaseVoiceRecorder;->stop(I)V
+
+    return-void
+.end method
+
+.method private voiceRecordStart()V
+    .registers 6
+
+    .prologue
     .line 2367
     :try_start_26
     invoke-virtual {p0}, Lcom/android/phone/InCallFragment;->setupPathFileName()Ljava/lang/String;
@@ -8082,21 +8119,6 @@
 
     .line 2375
     .end local v0           #e:Ljava/lang/RuntimeException;
-    :cond_5b
-    const-string v2, "InCallFragment"
-
-    const-string v3, "voiceRecordClick()->stop recording"
-
-    invoke-static {v2, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 2377
-    iget-object v2, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
-
-    const/16 v3, 0xa
-
-    invoke-virtual {v2, v3}, Landroid/media/voicerecorder/BaseVoiceRecorder;->stop(I)V
-
-    goto :goto_47
 .end method
 
 
