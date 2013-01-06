@@ -1549,6 +1549,8 @@
 
     invoke-virtual {v4, v5, v6}, Landroid/os/Vibrator;->vibrate(J)V
 
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordClick()V
+
     goto/16 :goto_16
 
     .line 4672
