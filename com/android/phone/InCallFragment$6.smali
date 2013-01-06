@@ -485,6 +485,10 @@
 
     invoke-virtual {v6}, Lcom/android/phone/InCallScreen_DSDA;->refreshTabs()V
 
+    iget-object v6, p0, Lcom/android/phone/InCallFragment$6;->this$0:Lcom/android/phone/InCallFragment;
+
+    invoke-static {v6}, Lcom/android/phone/InCallFragment;->access$1105(Lcom/android/phone/InCallFragment;)V
+
     .line 2082
     iget-object v6, p0, Lcom/android/phone/InCallFragment$6;->this$0:Lcom/android/phone/InCallFragment;
 

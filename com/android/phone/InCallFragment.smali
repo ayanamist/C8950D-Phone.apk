@@ -350,6 +350,17 @@
     return-void
 .end method
 
+.method static synthetic access$1105(Lcom/android/phone/InCallFragment;)V
+    .registers 1
+    .parameter "x0"
+
+    .prologue
+    .line 121
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordClick()V
+
+    return-void
+.end method
+
 .method static synthetic access$1200(Lcom/android/phone/InCallFragment;)Landroid/app/AlertDialog;
     .registers 2
     .parameter "x0"
