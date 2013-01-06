@@ -9570,6 +9570,16 @@
     :sswitch_24
     invoke-direct {p0}, Lcom/android/phone/InCallFragment;->internalAnswerCall()V
 
+    iget-object v0, p0, Lcom/android/phone/InCallFragment;->mHandler:Landroid/os/Handler;
+
+    new-instance v1, Lcom/android/phone/InCallFragment$18;
+
+    invoke-direct {v1, p0}, Lcom/android/phone/InCallFragment$18;-><init>(Lcom/android/phone/InCallFragment;)V
+
+    const-wide/16 v2, 0x1f4
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+
     goto :goto_1b
 
     .line 2639
