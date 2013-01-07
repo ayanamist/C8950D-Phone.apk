@@ -350,6 +350,26 @@
     return-void
 .end method
 
+.method static synthetic access$1105(Lcom/android/phone/InCallFragment;)V
+    .registers 2
+    .parameter "x0"
+
+    .prologue
+    .line 121
+    iget-object v0, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
+
+    invoke-virtual {v0}, Landroid/media/voicerecorder/BaseVoiceRecorder;->isRecording()Z
+
+    move-result v0
+
+    if-nez v0, :cond_15b
+
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordStart()V
+
+    :cond_15b
+    return-void
+.end method
+
 .method static synthetic access$1200(Lcom/android/phone/InCallFragment;)Landroid/app/AlertDialog;
     .registers 2
     .parameter "x0"
@@ -4759,6 +4779,21 @@
     :cond_7e
     invoke-virtual {p0}, Lcom/android/phone/InCallFragment;->requestUpdateScreen()V
 
+    sget-object v4, Lcom/android/internal/telephony/Phone$State;->OFFHOOK:Lcom/android/internal/telephony/Phone$State;
+
+    if-ne v2, v4, :cond_18a
+
+    iget-object v0, p0, Lcom/android/phone/InCallFragment;->mHandler:Landroid/os/Handler;
+
+    new-instance v1, Lcom/android/phone/InCallFragment$18;
+
+    invoke-direct {v1, p0}, Lcom/android/phone/InCallFragment$18;-><init>(Lcom/android/phone/InCallFragment;)V
+
+    const-wide/16 v2, 0x1f4
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    :cond_18a
     .line 3968
     sget-object v4, Lcom/android/internal/telephony/Phone$State;->RINGING:Lcom/android/internal/telephony/Phone$State;
 
@@ -9569,16 +9604,6 @@
     .line 2636
     :sswitch_24
     invoke-direct {p0}, Lcom/android/phone/InCallFragment;->internalAnswerCall()V
-
-    iget-object v0, p0, Lcom/android/phone/InCallFragment;->mHandler:Landroid/os/Handler;
-
-    new-instance v1, Lcom/android/phone/InCallFragment$18;
-
-    invoke-direct {v1, p0}, Lcom/android/phone/InCallFragment$18;-><init>(Lcom/android/phone/InCallFragment;)V
-
-    const-wide/16 v2, 0x1f4
-
-    invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
     goto :goto_1b
 
