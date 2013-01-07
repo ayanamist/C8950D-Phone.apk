@@ -10975,61 +10975,10 @@
 
     .prologue
     .line 827
-    invoke-interface {p1}, Landroid/view/MenuItem;->getItemId()I
-
-    move-result v0
-
-    .line 828
-    .local v0, id:I
-    const-string v1, "InCallFragment"
-
-    new-instance v2, Ljava/lang/StringBuilder;
-
-    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v3, "onOptionsItemSelected->itemId="
-
-    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 829
-    packed-switch v0, :pswitch_data_2a
-
-    .line 835
-    invoke-super {p0, p1}, Landroid/app/Fragment;->onOptionsItemSelected(Landroid/view/MenuItem;)Z
-
-    move-result v1
+    const/4 v1, 0x1
 
     :goto_23
     return v1
-
-    .line 831
-    :pswitch_24
-    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordClick()V
-
-    .line 832
-    const/4 v1, 0x1
-
-    goto :goto_23
-
-    .line 829
-    nop
-
-    :pswitch_data_2a
-    .packed-switch 0x1
-        :pswitch_24
-    .end packed-switch
 .end method
 
 .method public onPause()V
@@ -11148,6 +11097,8 @@
     .parameter "menu"
 
     .prologue
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordClick()V
+
     const v3, 0x7f0c02f8
 
     const/4 v2, 0x0
