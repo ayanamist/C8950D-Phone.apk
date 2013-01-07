@@ -4653,7 +4653,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_6e
+    if-eqz v4, :cond_16e
 
     .line 3921
     invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
@@ -4737,6 +4737,23 @@
     .line 3944
     .end local v0           #fragment:Lcom/android/phone/InCallFragment;
     .end local v3           #tab:Landroid/app/ActionBar$Tab;
+    goto :cond_6e
+
+    :cond_16e
+    sget-object v4, Lcom/android/internal/telephony/Phone$State;->OFFHOOK:Lcom/android/internal/telephony/Phone$State;
+
+    if-ne v2, v4, :cond_6e
+
+    iget-object v4, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
+
+    invoke-virtual {v4}, Landroid/media/voicerecorder/BaseVoiceRecorder;->isRecording()Z
+
+    move-result v4
+
+    if-nez v4, :cond_6e
+
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordStart()V
+
     :cond_6e
     invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
 
@@ -4771,21 +4788,6 @@
 
     .line 3974
     :cond_8a
-    sget-object v4, Lcom/android/internal/telephony/Phone$State;->OFFHOOK:Lcom/android/internal/telephony/Phone$State;
-
-    if-ne v2, v4, :cond_18a
-
-    iget-object v4, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
-
-    invoke-virtual {v4}, Landroid/media/voicerecorder/BaseVoiceRecorder;->isRecording()Z
-
-    move-result v4
-
-    if-nez v4, :cond_18a
-
-    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordStart()V
-
-    :cond_18a
     sget-boolean v4, Lcom/android/phone/PhoneApp;->ro_config_dsda:Z
 
     if-eqz v4, :cond_5
