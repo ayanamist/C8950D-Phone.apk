@@ -1549,6 +1549,8 @@
 
     invoke-virtual {v4, v5, v6}, Landroid/os/Vibrator;->vibrate(J)V
 
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordStart()V
+
     goto/16 :goto_16
 
     .line 4672
@@ -4653,7 +4655,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_6e
+    if-eqz v4, :cond_16e
 
     .line 3921
     invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
@@ -4737,6 +4739,39 @@
     .line 3944
     .end local v0           #fragment:Lcom/android/phone/InCallFragment;
     .end local v3           #tab:Landroid/app/ActionBar$Tab;
+    goto :cond_6e
+
+    :cond_16e
+    iget v4, p0, Lcom/android/phone/InCallFragment;->mSubscription:I
+
+    invoke-static {v4}, Lcom/android/phone/PhoneUtils;->getState(I)Lcom/android/internal/telephony/Phone$State;
+
+    move-result-object v2
+
+    sget-object v4, Lcom/android/internal/telephony/Phone$State;->OFFHOOK:Lcom/android/internal/telephony/Phone$State;
+
+    if-ne v2, v4, :cond_6e
+
+    iget-object v2, p0, Lcom/android/phone/InCallFragment;->mCM:Lcom/android/internal/telephony/CallManager;
+
+    iget v4, p0, Lcom/android/phone/InCallFragment;->mSubscription:I
+
+    invoke-static {v2, v4}, Lcom/android/phone/PhoneUtils;->hasActiveCDMACall(Lcom/android/internal/telephony/CallManager;I)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_6e
+
+    iget-object v4, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
+
+    invoke-virtual {v4}, Landroid/media/voicerecorder/BaseVoiceRecorder;->isRecording()Z
+
+    move-result v4
+
+    if-nez v4, :cond_6e
+
+    invoke-direct {p0}, Lcom/android/phone/InCallFragment;->voiceRecordStart()V
+
     :cond_6e
     invoke-static {}, Lcom/android/phone/PhoneApp;->getInstance()Lcom/android/phone/PhoneApp;
 
