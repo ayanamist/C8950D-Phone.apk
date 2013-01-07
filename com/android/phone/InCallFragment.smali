@@ -101,6 +101,8 @@
 
 .field private isAssociatedWithActivecall:Z
 
+.field private wasRinging:Z
+
 .field private mActiveCall:Landroid/widget/Button;
 
 .field private mApp:Lcom/android/phone/PhoneApp;
@@ -269,6 +271,8 @@
 
     .line 177
     iput-boolean v1, p0, Lcom/android/phone/InCallFragment;->isAssociatedWithActivecall:Z
+
+    iput-boolean v1, p0, Lcom/android/phone/InCallFragment;->wasRinging:Z
 
     .line 185
     iput-boolean v1, p0, Lcom/android/phone/InCallFragment;->mHideImmediately:Z
@@ -4760,8 +4764,13 @@
 
     move-result v4
 
+    if-nez v4, :cond_26e
+
+    iget-boolean v4, p0, Lcom/android/phone/InCallFragment;->wasRinging:Z
+
     if-eqz v4, :cond_6e
 
+    :cond_26e
     iget-object v4, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
 
     invoke-virtual {v4}, Landroid/media/voicerecorder/BaseVoiceRecorder;->isRecording()Z
@@ -4797,9 +4806,16 @@
     .line 3968
     sget-object v4, Lcom/android/internal/telephony/Phone$State;->RINGING:Lcom/android/internal/telephony/Phone$State;
 
-    if-eq v2, v4, :cond_8a
+    if-ne v2, v4, :cond_28a
+
+    const/4 v4, 0x1
+
+    iput-boolean v4, p0, Lcom/android/phone/InCallFragment;->wasRinging:Z
+
+    goto :cond_8a
 
     .line 3969
+    :cond_28a
     iget-object v4, p0, Lcom/android/phone/InCallFragment;->mApp:Lcom/android/phone/PhoneApp;
 
     invoke-virtual {v4}, Lcom/android/phone/PhoneApp;->updateWakeState()V
