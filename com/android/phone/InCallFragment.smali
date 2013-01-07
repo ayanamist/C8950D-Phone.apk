@@ -4750,6 +4750,16 @@
 
     if-ne v2, v4, :cond_6e
 
+    iget-object v2, p0, Lcom/android/phone/InCallFragment;->mCM:Lcom/android/internal/telephony/CallManager;
+
+    iget v4, p0, Lcom/android/phone/InCallFragment;->mSubscription:I
+
+    invoke-static {v2, v4}, Lcom/android/phone/PhoneUtils;->hasActiveCDMACall(Lcom/android/internal/telephony/CallManager;I)Z
+
+    move-result v4
+
+    if-eqz v4, :cond_6e
+
     iget-object v4, p0, Lcom/android/phone/InCallFragment;->mRecorder:Landroid/media/voicerecorder/BaseVoiceRecorder;
 
     invoke-virtual {v4}, Landroid/media/voicerecorder/BaseVoiceRecorder;->isRecording()Z
