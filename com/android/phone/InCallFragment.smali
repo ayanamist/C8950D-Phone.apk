@@ -4740,6 +4740,12 @@
     goto :cond_6e
 
     :cond_16e
+    iget v4, p0, Lcom/android/phone/InCallFragment;->mSubscription:I
+
+    invoke-static {v4}, Lcom/android/phone/PhoneUtils;->getState(I)Lcom/android/internal/telephony/Phone$State;
+
+    move-result-object v2
+
     sget-object v4, Lcom/android/internal/telephony/Phone$State;->OFFHOOK:Lcom/android/internal/telephony/Phone$State;
 
     if-ne v2, v4, :cond_6e
